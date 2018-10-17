@@ -1,0 +1,25 @@
+img{
+	float: left;
+	width:30%;
+	margin:1.66%; 
+	/*30% width*3= 90%; rem 10% / 6 margins = 1.66% */
+}
+
+#one{
+	background-color: red;
+}
+
+#two{
+	background-color: purple;
+}
+
+p{
+	font-family: 'Raleway', sans-serif;
+	font-weight: 800;
+	font-size: 23px;
+	text-transform: uppercase;
+	border-bottom: 2px solid #f1f1f1;
+	width: 30% ;/*sets width of paragraph and line within it*/
+	padding-bottom: 20px;
+}
+
