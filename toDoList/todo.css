@@ -1,0 +1,17 @@
+.done{
+	text-decoration: line-through;
+	color: red;
+	opacity: 0.5;
+}
+
+.selected{
+	color: green;
+}
+
+body{
+	font-size: 24px;
+}
+
+h1{
+	font-size: 28px;
+}

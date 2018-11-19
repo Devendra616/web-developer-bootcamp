@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Color Changer</title>
+</head>
+<body>
+	<button>Click Here</button>
+
+	<script type="text/javascript">
+		var button = document.querySelector("button");
+		var isToggled = false;
+		button.addEventListener("click",function(){
+			if(isToggled){
+				document.body.style.background = "white";
+			}else{
+				document.body.style.background = "blue";
+			}
+			isToggled = !isToggled;
+		})
+	</script>
+</body>
+</html>
