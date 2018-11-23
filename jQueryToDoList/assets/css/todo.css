@@ -1,0 +1,92 @@
+body{
+	font-family: 'Roboto', sans-serif;
+	background: #16A085;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #F4D03F, #16A085);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #F4D03F, #16A085); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+h1{
+	background-color: #2980b9;
+	color: white;
+	margin:0;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	font-size: 24px;
+	font-weight: normal;
+}
+
+input{
+	font-size: 18px;
+	background-color: #f7f7f7;
+	width: 100%;
+	padding: 13px 13px 13px 20px;
+	color:  #2980b9;
+	box-sizing: border-box;
+	-webkit-box-sizing: none;  
+    -moz-box-sizing: none;    
+    -ms-box-sizing: none;  
+    border: 3px solid rgba(0,0,0,0);
+}
+
+input:focus{
+	background-color: white;
+	border: 3px solid #2980b9;
+	outline: none;
+}
+
+ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/*disable selecton of list item*/
+ul li{
+ -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
+
+  background-color: white;
+  height: 40px;
+  line-height: 40px;
+  color: #666;
+}
+
+ul li:nth-child(even){
+	background-color: #f7f7f7; 
+}
+
+span{
+	background-color: #e74c3c;
+	height: 40px;
+	margin-right: 20px;
+	text-align: center;
+	color:white;
+	width: 0;
+	display: inline-block;
+	transition: 0.25s linear;
+	opacity: 0; /*to hide the white icon when not hoverd*/
+}
+
+li:hover span{
+	width: 40px;
+	opacity: 1;
+}
+
+.completed{
+	color: grey;
+	text-decoration: line-through;
+}
+
+.fa-plus,.fa-minus{
+	float: right;
+}
+
+#container{
+	width: 360px;
+	margin:100px auto;
+	background:#f7f7f7;
+	box-shadow: 0 0 3px rgba(0, 0, 0,0.2);
+}
