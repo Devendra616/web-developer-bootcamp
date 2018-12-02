@@ -1,0 +1,14 @@
+{
+  "name": "expressrouteassignment",
+  "version": "1.0.0",
+  "description": "udemy bootcamp excercise on express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Devendra Singh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
