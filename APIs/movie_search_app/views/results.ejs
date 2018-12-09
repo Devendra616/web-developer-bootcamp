@@ -1,4 +1,15 @@
 <h1>Results Page</h1>
 <% data["Search"].forEach(function(movie){%>
-    <%= movie.Title %>
+  <li>  
+      <strong><%= movie.Title %></strong> - <%= movie["Year"] %>
+        <!--  <img src= <%= movie["Poster"] %> alt=<%= movie["Title"] %> width=200 height= 100> -->
+    </li>
 <%}) %>
+
+<% var totalResults = Number(data["totalResults"]); %>        <!-- derive total number of results from OMDB JSON -->
+<% var totalPages = Math.ceil(totalResults / 10); %>          <!-- calculate total number of pages, based on 10 entries per page -->
+<% for(var i = 1; i <= totalPages; i++) { %>                  <!-- a loop to generate page link -->
+<% var pageurl = "/results?searchMovie=" + query + "&page=" + i+"&apikey=thewdb"; %>  <!-- prepare url to send to "/results" route -->
+<a href=<%=pageurl%>> <%=i%> </a>&nbsp;
+<% };%>
+<a href="/">Search Again!</a>

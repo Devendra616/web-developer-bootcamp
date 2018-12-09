@@ -11,15 +11,17 @@ app.get("/",(req,res)=>{
 
 app.get("/results",(req,res)=>{
     var query = req.query.searchMovie;
+    var page = req.query.page;
+
     var searchUrl="http://www.omdbapi.com/?s=gold&apikey=thewdb";
     if(query != undefined && query != ""){
-        searchUrl = "http://www.omdbapi.com/?s="+query+"&apikey=thewdb";
+        searchUrl = "http://www.omdbapi.com/?s="+query+ "&page=" + page+"&apikey=thewdb";
     }
     request(searchUrl,function(error,response,body){
         if(!error && response.statusCode == 200){
             var data = JSON.parse(body);
             //res.send(data["Search"][0].Title);
-            res.render("results",{data:data});
+            res.render("results",{data:data,query:query});
         }
     });
 });
