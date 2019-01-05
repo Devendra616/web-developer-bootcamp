@@ -1,0 +1,20 @@
+<% include partials/header %>
+
+<div class="container">
+<div class="row">
+<div class="col-sm-12 center">
+    <h1><%= campground.name %></h1>
+</div>
+<div class="col-12">
+    <img src="<%= campground.img %>" alt="<%= campground.name %>">
+</div>
+<div class="col-8">
+    <p><%= campground.description %></p>
+</div>
+</div>
+</div>
+
+<% campground.comments.forEach(function(comment){ %>
+    <p><strong><%= comment.author%></strong> - <%= comment.text%></p>
+<% }); %>
+<% include partials/footer %>
