@@ -74,11 +74,9 @@ app.get("/logout",(req,res)=>{
 
 //Middleware to check if authenticated
 function isLoggedIn(req,res,next){
-    if(req.isAuthenticated()){
-        console.log("authentiated");
+    if(req.isAuthenticated()){        
         return next();
-    }else{
-        console.log("not authentiated");
+    }else{        
         res.redirect('/login');
     }
 }
