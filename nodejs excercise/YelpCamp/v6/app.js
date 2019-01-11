@@ -55,7 +55,7 @@ app.get("/campgrounds",(req,res)=>{
         if(err){
             console.log(err);
         }else{
-            res.render("campgrounds/index",{campgroundslist:allCamps, currentUser: req.user});
+            res.render("campgrounds/index",{campgroundslist:allCamps});
         }
     })
     //res.render("campgrounds",{campgroundslist:campgroundslist});
