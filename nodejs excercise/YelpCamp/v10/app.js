@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var methodOverride = require('method-override');
 var flash    = require('flash');
 var Campground = require("./models/campground") 
 var Comment = require("./models/comment"),
@@ -22,6 +23,7 @@ mongoose.connect("mongodb://localhost:27017/yelpcampDbv10",{useNewUrlParser :tru
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname+"/public"));
+app.use(methodOverride("_method"));
 app.set("view engine","ejs");
 
 //PASSPORT CONFIGURATION

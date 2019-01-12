@@ -33,8 +33,7 @@ router.post("/",isLoggedIn,(req,res)=>{
         }else{            
             res.redirect("/campgrounds");
         }
-    })
-    
+    });    
     //redirect to campground page
    // res.redirect("/campgrounds");
 });
@@ -53,6 +52,29 @@ router.get("/:id",(req,res)=>{
         }
     });   
 });
+
+//EDIT campground 
+router.get('/:id/edit',(req,res)=>{
+    Campground.findById(req.params.id,(err,foundCamp)=>{
+        if(err){
+            res.redirect("/campgrounds");
+        }else{
+            res.render('campgrounds/edit',{campground:foundCamp});
+        }
+    });    
+})
+
+//UPDATE campground
+router.put("/:id",(req,res)=>{
+   var data = {}
+    Campground.findByIdAndUpdate(req.params.id,req.body.campground,function(err,updatedCamp){
+        if(err){
+            res.redirect("/campgrounds");
+        }else{
+            res.redirect("/campgrounds/"+req.params.id);
+        }
+    })
+})
 
 //middleware
 function isLoggedIn(req,res,next){
