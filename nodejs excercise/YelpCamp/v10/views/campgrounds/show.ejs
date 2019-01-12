@@ -18,7 +18,13 @@
                     <h4><a><%= campground.name %></a></h4>
                     <p><%= campground.description %></p>
                     <p>Submitted By: <%= campground.author.username %></p>
-                    <a href='<%= campground.id %>/edit' class='btn btn-warning'>Edit</a>
+                    <% if(currentUser && campground.author.id.equals(currentUser._id)){ //defined in app.js %>
+                        <a href='<%= campground.id %>/edit' class='btn btn-xs btn-warning'>Edit</a>
+                        <form id='delete-form' action="/campgrounds/<%= campground.id %>?_method=delete" method="POST">
+                            <button class="btn btn-xs btn-danger">Delete</button>
+                        </form>
+                    <% } %>
+                    
                 </div>
         </div>
         <div class="well">
