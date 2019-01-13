@@ -20,7 +20,7 @@
                     <p>Submitted By: <%= campground.author.username %></p>
                     <% if(currentUser && campground.author.id.equals(currentUser._id)){ //defined in app.js %>
                         <a href='<%= campground.id %>/edit' class='btn btn-xs btn-warning'>Edit</a>
-                        <form id='delete-form' action="/campgrounds/<%= campground.id %>?_method=delete" method="POST">
+                        <form class='delete-form' action="/campgrounds/<%= campground.id %>?_method=delete" method="POST">
                             <button class="btn btn-xs btn-danger">Delete</button>
                         </form>
                     <% } %>
@@ -38,7 +38,12 @@
                             <strong><%= comment.author.username%></strong>
                             <span class="pull-right">10 days ago</span>
                             <p><%= comment.text%></p>
-                            <a href="/campgrounds/<%= campground.id %>/comments/<%= comment._id %>/edit" class='btn btn-xs btn-warning'>Edit</a>                            
+                            <% if(currentUser && comment.author.id.equals(currentUser._id)){ //defined in app.js %>
+                                <a href="/campgrounds/<%= campground.id %>/comments/<%= comment._id %>/edit" class='btn btn-xs btn-warning'>Edit</a>                            
+                                <form class='delete-form' action="/campgrounds/<%= campground.id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                    <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                </form>
+                            <% } %>    
                     </div>
                         
                 </div>                    
