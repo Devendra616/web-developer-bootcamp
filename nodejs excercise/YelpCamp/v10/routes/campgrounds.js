@@ -63,7 +63,7 @@ router.get('/:id/edit',checkCampgroundOwnership,(req,res)=>{
 
 //UPDATE campground
 router.put("/:id",checkCampgroundOwnership,(req,res)=>{
-   var data = {}
+   
     Campground.findByIdAndUpdate(req.params.id,req.body.campground,function(err,updatedCamp){
         if(err){
             res.redirect("/campgrounds");
