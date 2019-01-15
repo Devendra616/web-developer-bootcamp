@@ -49,7 +49,7 @@ router.post("/",middleware.isLoggedIn,(req,res)=>{
 });
 
 //edit comment
-router.get("/:comment_id/edit",middleware.checkCommentOwnership,(req,res)=>{
+/* router.get("/:comment_id/edit",middleware.checkCommentOwnership,(req,res)=>{
     Comment.findById(req.params.comment_id,function(err,foundComment){
         if(err){
             req.flash("error","Something went wrong!");
@@ -58,6 +58,10 @@ router.get("/:comment_id/edit",middleware.checkCommentOwnership,(req,res)=>{
             res.render("comments/edit",{campground_id:req.params.id, comment:foundComment});
         }
     });   
+}) */
+
+router.get("/:comment_id/edit",middleware.isLoggedIn,middleware.checkUserComment, (req,res)=>{
+    res.render("comments/edit",{campground_id:req.params.id, comment:req.comment});
 })
 
 //update comment

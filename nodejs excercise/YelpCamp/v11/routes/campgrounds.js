@@ -49,18 +49,26 @@ router.get("/:id",(req,res)=>{
     Campground.findById(req.params.id).populate("comments").exec(function(err,foundCamp){
         if(err){
             console.log(err);
-        }else{           
+        }else{   
+            if(!foundCamp) {
+                req.flash("error", "Campground not found");
+                return res.redirect("/campgrounds");
+            }
             res.render("campgrounds/show",{campground:foundCamp});
         }
     });   
 });
 
 //EDIT campground 
-router.get('/:id/edit',middleware.checkCampgroundOwnership,(req,res)=>{
+/* router.get('/:id/edit',middleware.checkCampgroundOwnership,(req,res)=>{
     //if user is logged in
     Campground.findById(req.params.id,(err,foundCamp)=>{
            res.render('campgrounds/edit',{campground:foundCamp});                
         });  
+}) */
+
+router.get("/:id/edit",middleware.isLoggedIn, middleware.checkUserCampground,(req,res)=>{
+    res.render('campgrounds/edit',{campground:req.campground});                
 })
 
 //UPDATE campground
