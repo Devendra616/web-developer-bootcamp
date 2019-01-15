@@ -25,8 +25,9 @@ router.post("/",middleware.isLoggedIn,(req,res)=>{
         id: req.user._id,
         username: req.user.username
     };
+    var price = req.body.price;
     
-    var newCampground = {name:name,state:state,img:imageUrl,description:description,author:author};
+    var newCampground = {name:name,price:price,state:state,img:imageUrl,description:description,author:author};
     //campgroundslist.push(newCampground);
     Campground.create(newCampground,(err,camp)=>{
         if(err){

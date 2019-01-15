@@ -19,10 +19,11 @@ router.post('/register',(req,res)=>{
     var newUser = new User({username: req.body.username});
     User.register(newUser,req.body.password,function(err,user){
         if(err){
-            console.log(err);
+            req.flash("error",err.message);
             return res.render("register");
         }
         passport.authenticate("local")(req,res,function(){
+            req.flash("success","Welcome to Yelpcamp! "+user.username);
             res.redirect("/campgrounds");
         });
     })
@@ -43,7 +44,10 @@ router.post('/login',passport.authenticate('local',{
 router.post('/login',function(req,res,next){
     passport.authenticate('local',function(err,user,info){
         if(err){ return next(err);}
-        if(!user){ return res.redirect('/login');}
+        if(!user){ 
+            req.flash("error", "Login failure");
+            return res.redirect('/login');
+        }
 
         req.logIn(user,function(err){
             if(err){ return next(err);}
@@ -58,17 +62,8 @@ router.post('/login',function(req,res,next){
 //logout route
 router.get("/logout",(req,res)=>{
     req.logOut();
+    req.flash("success", "Logged you out!");
     res.redirect("/campgrounds");
 });
 
-
-//middleware
-function isLoggedIn(req,res,next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    req.session.redirectTo = req.originalUrl;
-    req.flash("error", "You need to be logged in to do that");
-    res.redirect("/login");
-}
 module.exports = router;

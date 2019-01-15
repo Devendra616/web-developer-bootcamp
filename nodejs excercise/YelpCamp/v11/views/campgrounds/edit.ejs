@@ -8,6 +8,9 @@
         <input type="text" value="<%= campground.name %>" name="campground[name]" class="form-control">
     </div>
     <div class="form-group">
+        <input type="number" value="<%= campground.price %>" name="campground[price]" min="1000" step="100" class="form-control">
+    </div>
+    <div class="form-group">
         <input type="text" value="<%= campground.img %>" name="campground[img]" class="form-control">
     </div>
     <div class="form-group">

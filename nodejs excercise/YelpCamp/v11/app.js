@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var methodOverride = require('method-override');
-var flash    = require('flash');
+var flash    = require('connect-flash');
 var Campground = require("./models/campground") 
 var Comment = require("./models/comment"),
     //User = require("./models/users"),
@@ -33,7 +33,7 @@ app.use(require('express-session')({
     saveUninitialized:false
 }));
 
-
+app.use(flash()); //must be before passport config
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new localStrategy(User.authenticate()));
@@ -43,10 +43,12 @@ passport.deserializeUser(User.deserializeUser());
 //this middleware now get added to all route, addding the currentuser to all pages
 app.use(function(req,res,next){
     res.locals.currentUser = req.user;
+    res.locals.errormessage = req.flash('error');
+    res.locals.successmessage = req.flash('success');
     next();
 });
 
-app.use(flash());
+
 app.use("/",indexRoutes);
 // adds first parameter as prepends to the routes defined in commentRoutes
 // so /new becomes /campgrounds/new
