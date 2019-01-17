@@ -19,7 +19,10 @@ var passport = require('passport'),
     User = require('./models/user');
 
 // SeedDb(); //seed the database
-mongoose.connect("mongodb://localhost:27017/yelpcampDbv10",{useNewUrlParser :true});
+//mongodb://<dbuser>:<dbpassword>@ds259144.mlab.com:59144/bootcamp
+//mongodb://devendra:A1359db@ds259144.mlab.com:59144/bootcamp
+var dburl = process.env.DATABASEURL||"mongodb://localhost:27017/yelpcampDbv10";
+mongoose.connect(dburl,{useNewUrlParser :true});
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname+"/public"));
@@ -56,6 +59,7 @@ app.use("/campgrounds",campgroundRoutes);
 app.use("/campgrounds/:id/comments",commentRoutes);
 
 var port = process.env.PORT || 3000;
-app.listen(port,"localhost",function(){
+var ip = process.env.IP || "localhost";
+app.listen(port,ip,function(){
     console.log("Server has started ....");
 });
