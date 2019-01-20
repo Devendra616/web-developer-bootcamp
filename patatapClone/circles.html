@@ -179,7 +179,26 @@
                 keyData[event.key].sound.play();
                 circles.push(newCircle);
             }            
-        }    
+        };
+        
+        //get random key selected
+        var randomProperty = function (obj) {
+            var keys = Object.keys(obj)
+            return keys[ keys.length * Math.random() << 0];
+        };
+
+        function onMouseDown(event){
+                var randomKey = randomProperty(keyData);
+                console.log(randomKey);
+                var x= Math.random()*view.size.width;
+                var y = Math.random()*view.size.height;
+                // When a key is pressed,
+                var newCircle = new Path.Circle(new Point(x,y), 400);
+                newCircle.fillColor = keyData[randomKey].color;
+                keyData[randomKey].sound.play();
+                circles.push(newCircle);
+                      
+        }
 
         //add animation to circle
         function onFrame(event) {
@@ -193,10 +212,11 @@
                     circles.splice(i, 1);
                     console.log(circles);
                 }
+
             }
-            
         }
-        
+       
+
 </script>
 <link href="./circles.css" rel="stylesheet" >
 </head>
